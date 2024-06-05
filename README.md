@@ -1,30 +1,31 @@
-# Phone Pe Pulse Data Visualization using SQL, Streamlit, Pandas
+# Phone Pe Pulse Data Visualization using SQL, Streamlit, Pandas, Plotly
 
-## Tech Stack: Github Cloning, Python scripting, Phonepe pulse Data Collection, Streamlit, Pymysql, Pandas, Sqlalchemy
+## Tech Stack: Github Cloning, Python scripting, Phonepe pulse Data Collection, Streamlit, Pymysql, Pandas, Sqlalchemy, Plotly
 
 ## FinTech
 
-In The Project we have Streamlit used to build the application responsively
-Totaly Two pages used.
-  - First page(main)
-      - youtube streaming process, database connectivity, Create Table, Insert& update proacess in mysql.
-      - Use google api key to connect youtube Streaming API and get channel and videos with comment against channel.
-  - Second page
-      - TO solve question from project based on records in the sql
-      - Each and every question have separate query based on condition to show in the page.
+In The Project we have Streamlit used to build the Geo India Map Location application responsively
+
 
 ## Project Structure
-- data_harvesting file
-  - Totally Two classes is used
-      - Database class
-          - initialize_db method
-          - create_table method
-          - insert_records method
-      - BuildYouTubeApi class
-          - get_channel method
-          - get_videos_with_comments method
+- Phone Pe Pulse Data Folder
+  - pluse folder
+      - data
+            - aggregated
+            - Map
+            - top
+  - Scripts
+      - transaction_query.sql
+      - user_query.sql
+      - insurance_quer.sql
+  - main.py
+  - database_connection.py
+  - extraction_data.py
+  - pulse_data_queries.py
+  - requirements.txt
+  - schemas.py
             
-  Once records from the database or api, then i will show records in UI
+  Extarct Data from given pulse data fodler. then hit database and get records, then i will show records in form of Geo india Map and UI
 
 
   - UI Parts method
