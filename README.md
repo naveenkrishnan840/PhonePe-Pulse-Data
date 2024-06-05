@@ -11,9 +11,9 @@ In The Project we have Streamlit used to build the Geo India Map Location applic
 - Phone Pe Pulse Data Folder
   - pluse folder
       - data
-            - aggregated
-            - Map
-            - top
+        - aggregated
+        - Map
+        - top
   - Scripts
       - transaction_query.sql
       - user_query.sql
