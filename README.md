@@ -12,8 +12,11 @@ In The Project we have Streamlit used to build the Geo India Map Location applic
   - pluse folder
       - data
         - aggregated
+            - Related state/state_name/.json
         - Map
+            - Related state/state_name/.json
         - top
+            - Related state/state_name/.json
   - Scripts
       - transaction_query.sql
       - user_query.sql
@@ -28,7 +31,12 @@ In The Project we have Streamlit used to build the Geo India Map Location applic
   Extarct Data from given pulse data fodler. then hit database and get records, then i will show records in form of Geo india Map and UI
 
 
-  - UI Parts method
-      - show_channel_details
-- pages/query-page file
-    - In select box have 10 question to select and execute the query from mysql database in dataframe format and show in grid 
+  - UI Parts file
+      - main.py
+          - To choose the pulse action, year and quarter to get records from the database and show the aggregated data in form of Map and table format.
+  - scripts/.sql
+      - To create the raw aggregate the queries for the reference to build the sqlalchemy orm
+  - database_connection.py
+    - It is used connect the database in given sqlalchemy server, then insert and get the record from database
+  
+  
