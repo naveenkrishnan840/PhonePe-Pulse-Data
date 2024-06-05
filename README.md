@@ -6,7 +6,9 @@
 
 In The Project we have Streamlit used to build the Geo India Map Location application responsively
 
-
+## Run the Streamlit application
+  `pip install requirements.txt`
+  `streamlit run main.py`
 ## Project Structure
 - Phone Pe Pulse Data Folder
   - pluse folder
