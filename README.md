@@ -38,5 +38,12 @@ In The Project we have Streamlit used to build the Geo India Map Location applic
       - To create the raw aggregate the queries for the reference to build the sqlalchemy orm
   - database_connection.py
     - It is used connect the database in given sqlalchemy server, then insert and get the record from database
-  
+  - extraction_data.py
+    - It is used to extract the data from pluse data folder and to form of dataframe using pandas.
+  - pulse_data_queries.py
+    - It is used to build sqlalchemy orm queries for all actions.
+  - requirements.txt
+    - It is used to install package for this project needs.
+  - schemas.py
+    - It is used to frame the sqlalchemy orm class to build orm queries using sqlalchemy.
   
