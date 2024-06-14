@@ -11,8 +11,8 @@ class BuildDataBase:
                                         url="mysql+pymysql://root:test@localhost:3306/phone_pe_pulse_data")
         self.session = self.connection.session
         # self.drop_tables()
-        # Base.metadata.create_all(self.connection.engine)
-        # self.insert_records(extract_data)
+        Base.metadata.create_all(self.connection.engine)
+        self.insert_records(extract_data)
 
     def drop_tables(self):
         self.session.begin()
