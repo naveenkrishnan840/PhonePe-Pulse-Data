@@ -32,7 +32,7 @@ if select_option != "Select":
                            query(AggregatedTransaction.year.cast(String),
                                  case((AggregatedTransaction.quarter == 1, "Q1 (Jan - Mar)"),
                                       (AggregatedTransaction.quarter == 2, "Q2 (Apr - Jun)"),
-                                      (AggregatedTransaction.quarter == 3, "Q2 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
+                                      (AggregatedTransaction.quarter == 3, "Q3 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
                                  label("Quarter"),
                                  AggregatedTransaction.transaction_type,
                                  func.max(AggregatedTransaction.transaction_count),
@@ -63,7 +63,7 @@ if select_option != "Select":
                           query(States.state_name, MapTransaction.year.cast(String),
                                 case((MapTransaction.quarter == 1, "Q1 (Jan - Mar)"),
                                      (MapTransaction.quarter == 2, "Q2 (Apr - Jun)"),
-                                     (MapTransaction.quarter == 3, "Q2 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
+                                     (MapTransaction.quarter == 3, "Q3 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
                                 label("Quarter"),
                                 func.sum(MapTransaction.transaction_count)).
                           join(States).
@@ -86,7 +86,7 @@ if select_option != "Select":
         df = pd.DataFrame(connection_object.connection.session.
                           query(case((AggregatedInsurance.quarter == 1, "Q1 (Jan - Mar)"),
                                      (AggregatedInsurance.quarter == 2, "Q2 (Apr - Jun)"),
-                                     (AggregatedInsurance.quarter == 3, "Q2 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
+                                     (AggregatedInsurance.quarter == 3, "Q3 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
                                 label("Quarter"), func.sum(AggregatedInsurance.insurance_amount)).
                           group_by(AggregatedInsurance.quarter).
                           order_by(AggregatedInsurance.quarter),
@@ -107,7 +107,7 @@ if select_option != "Select":
         df = pd.DataFrame(connection_object.connection.session.
                           query(case((TopTransactionPincode.quarter == 1, "Q1 (Jan - Mar)"),
                                      (TopTransactionPincode.quarter == 2, "Q2 (Apr - Jun)"),
-                                     (TopTransactionPincode.quarter == 3, "Q2 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
+                                     (TopTransactionPincode.quarter == 3, "Q3 (Jul - Sep)"), else_="Q4 (Oct - Dec)").
                                 label("Quarter"), func.count(TopTransactionPincode.pincode)).
                           group_by("Quarter").
                           order_by("Quarter"), columns=["Quarter", "Pincode"])
