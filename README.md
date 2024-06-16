@@ -44,6 +44,8 @@ In The Project we have Streamlit used to build the Geo India Map Location applic
     - It is used to extract the data from pluse data folder and to form of dataframe using pandas.
   - pulse_data_queries.py
     - It is used to build sqlalchemy orm queries for all actions.
+  - Pages/question.py
+     - It is used to prepare queries to show the records in given UI.
   - requirements.txt
     - It is used to install package for this project needs.
   - schemas.py
