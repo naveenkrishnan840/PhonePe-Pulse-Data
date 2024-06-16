@@ -38,40 +38,60 @@ if click_btn:
     if not result_data[0].empty:
         state_df = result_data[0]
         main_all_values = result_data[1].to_dict(orient="records")[0]
+        bar_plots_x = "State"
         if select_value == "Transaction":
             map_col_values = ["State", "Transaction Count", "Total Payment", "Average Payment"]
+            bar_plots_y = "Total Payment"
+            color_col = "Average Payment"
             category_value = result_data[2]
         elif select_value == "Users":
             map_col_values = ["State", "Registered Users", "App Opens"]
+            bar_plots_y = "Registered Users"
+            color_col = "App Opens"
             category_value = result_data[2]
         else:
             map_col_values = ["State", "No Of Policies", "Total Premium", "Average Premium"]
+            bar_plots_y = "Total Premium"
+            color_col = "Average Premium"
         grp_panel = st.columns([3, 1])
         with (grp_panel[0]):
             state_df["State"] = state_df["State"].replace(to_replace=r'[-&--]', value=' ', regex=True
                                                           ).replace(to_replace=r'\s+', value=' ',
                                                                     regex=True).str.title()
-            with st.container(border=True, height=1200):
-                fig = px.choropleth(
-                    data_frame=state_df,
-                    geojson="https://gist.githubusercontent.com/jbrobst/56c13bbbf9d97d187fea01ca62ea5112/raw/"
-                            "e388c4cae20aa53cb5090210a42ebb9b765c0a36/india_states.geojson",
-                    featureidkey='properties.ST_NM',
-                    locations='State',
-                    color='State',
-                    hover_data=map_col_values,
-                    color_continuous_scale="Viridis",
-                    range_color=(0, 36),
-                    center={"lat": 37.0902, "lon": -95.7129},
-                    projection="mercator",
-                    title="India Map",
-                    # animation_frame="State",
-                    # color_continuous_scale='Reds',
-                    height=1200
-                )
-                fig.update_geos(fitbounds="locations", visible=True)
-                fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-                st.plotly_chart(fig)
+            plots_tab = st.tabs(["Map Plots", "Bar Plots", "Pie Plots", "Histograms"])
+            with plots_tab[0]:
+                with st.container(border=True, height=1200):
+                    fig = px.choropleth(
+                        data_frame=state_df,
+                        geojson="https://gist.githubusercontent.com/jbrobst/56c13bbbf9d97d187fea01ca62ea5112/raw/"
+                                "e388c4cae20aa53cb5090210a42ebb9b765c0a36/india_states.geojson",
+                        featureidkey='properties.ST_NM',
+                        locations='State',
+                        color='State',
+                        hover_data=map_col_values,
+                        color_continuous_scale="Viridis",
+                        range_color=(0, 36),
+                        center={"lat": 37.0902, "lon": -95.7129},
+                        projection="mercator",
+                        title="India Map",
+                        height=1200
+                    )
+                    fig.update_geos(fitbounds="locations", visible=True)
+                    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+                    st.plotly_chart(fig)
+            with plots_tab[1]:
+                with st.container(border=True, height=1200):
+                    fig = px.bar(state_df, x=bar_plots_x, y=bar_plots_y, color=color_col)
+                    st.plotly_chart(fig)
+            with plots_tab[2]:
+                with st.container(border=True, height=1200):
+                    fig = px.pie(state_df, names=bar_plots_x, values=bar_plots_y,
+                                 color_discrete_sequence=px.colors.sequential.RdBu, color=color_col)
+                    st.plotly_chart(fig)
+            with plots_tab[3]:
+                with st.container(border=True, height=1200):
+                    fig = px.histogram(state_df, x=bar_plots_x, y=bar_plots_y, color=color_col)
+                    st.plotly_chart(fig)
         with grp_panel[1]:
             with st.container(border=True):
                 st.markdown(f"<p style='color:#05c3de; font-size:30px;'><b>{select_value}</b></p>",
