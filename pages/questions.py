@@ -25,7 +25,7 @@ if select_option != "Select":
     connection_object = BuildDataBase(queries_action=True)
     df = pd.DataFrame()
     single_title = None
-    single_tab = False
+    single_tab = True
     if select_option == ("How to find maximum transaction Count & Transaction Amount based on corresponding year "
                          "in the TamilNadu State for Categories ?"):
         df = pd.DataFrame((connection_object.connection.session.
@@ -151,4 +151,6 @@ if select_option != "Select":
             st.dataframe(df, hide_index=True, use_container_width=True)
         with tab[1]:
             st.plotly_chart(px.bar(df, x=df.columns[0], y=df.columns[1]))
+
+
 
